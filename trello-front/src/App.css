@@ -1,3 +1,16 @@
+:root {
+  --primary-color: #0079bf; 
+  --primary-hover: #005a8e;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+}
+
+.app-header {
+  background-color: var(--primary-color);
+}
+
 #root {
   max-width: 1280px;
   margin: 0 auto;

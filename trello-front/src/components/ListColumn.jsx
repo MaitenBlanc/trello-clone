@@ -2,10 +2,12 @@ import { useState } from "react";
 import { boardService } from "../services/boardService";
 import CardItem from "./CardItem";
 import { Droppable } from "@hello-pangea/dnd";
+import {getColorById } from "../utils/colorUtils";
 
 function ListColumn({ list, boardId, onUpdate, onDeleteList }) {
   const [isAddingCard, setIsAddingCard] = useState(false);
   const [newCardTitle, setNewCardTitle] = useState("");
+  const listBorderColor = getColorById(list.id);
 
   const handleAddCard = async () => {
     if (!newCardTitle) return;
@@ -38,7 +40,9 @@ function ListColumn({ list, boardId, onUpdate, onDeleteList }) {
   };
 
   return (
-    <div className="min-w-[280px] w-[280px] bg-gray-100 rounded-xl p-3 shadow-lg flex flex-col max-h-full border-t-4 border-blue-400">
+    <div className="min-w-[280px] w-[280px] bg-gray-100 rounded-xl p-3 shadow-lg flex flex-col max-h-full border-t-4"
+      style={{ borderTopColor: listBorderColor }}
+    >
       <div className="flex justify-between items-center mb-3 px-1">
         <h3 className="font-bold text-slate-700 text-sm uppercase tracking-wide">
           {list.name}{" "}

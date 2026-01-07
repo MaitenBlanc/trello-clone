@@ -84,7 +84,7 @@ function BoardPage() {
     );
 
   return (
-    <div className="min-h-screen bg-blue-600 flex flex-col font-sans">
+    <div className="min-h-screen bg-primary flex flex-col font-sans">
       <div className="bg-black/20 p-3 text-white flex justify-between items-center backdrop-blur-md shadow-sm z-10">
         <div className="flex items-center gap-4">
           <h1 className="text-xl font-bold tracking-tight">{board.name}</h1>

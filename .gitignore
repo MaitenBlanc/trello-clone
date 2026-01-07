@@ -1,0 +1,21 @@
+# --- Frontend (Node) ---
+node_modules/
+dist/
+.env
+.DS_Store
+
+# --- Backend (Java/Maven) ---
+target/
+.mvn/
+mvnw
+mvnw.cmd
+.idea/
+.vscode/
+*.class
+*.jar
+*.war
+*.log
+help.md
+
+# --- OS ---
+Thumbs.db

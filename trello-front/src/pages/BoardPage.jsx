@@ -32,6 +32,15 @@ function BoardPage() {
     }
   };
 
+  const handleDeleteList = async (listId) => {
+    try {
+      await boardService.deleteList(board.id, listId)
+      handleUpdate()
+    } catch (error) {
+      console.error("Error borrando lista:", error)
+    }
+  };
+
   const onDragEnd = async (result) => {
     const { destination, source, draggableId } = result;
     if (!destination) return;
@@ -100,6 +109,7 @@ function BoardPage() {
                 list={list}
                 boardId={board.id}
                 onUpdate={handleUpdate}
+                onDeleteList={handleDeleteList}
               />
             ))}
 

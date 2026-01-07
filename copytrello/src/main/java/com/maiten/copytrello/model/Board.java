@@ -85,4 +85,27 @@ public class Board {
             }
         }
     }
+
+    public void removeList(String listId) {
+        if (this.lists != null) {
+            this.lists.removeIf(list -> list.getId().equals(listId));
+        }
+    }
+
+    public void updateCard(String listId, String cardId, String newTitle) {
+        if (this.lists != null) {
+            for (TrelloList list : this.lists) {
+                if (list.getId().equals(listId)) {
+                    for (Card card : list.getCards()) {
+                        if (card.getId().equals(cardId)) {
+                            card.setTitle(newTitle);
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    
 }

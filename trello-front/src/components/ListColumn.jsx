@@ -3,7 +3,7 @@ import { boardService } from "../services/boardService";
 import CardItem from "./CardItem";
 import { Droppable } from "@hello-pangea/dnd";
 
-function ListColumn({ list, boardId, onUpdate }) {
+function ListColumn({ list, boardId, onUpdate, onDeleteList }) {
   const [isAddingCard, setIsAddingCard] = useState(false);
   const [newCardTitle, setNewCardTitle] = useState("");
 
@@ -19,6 +19,15 @@ function ListColumn({ list, boardId, onUpdate }) {
     }
   };
 
+  const handleEditeCard = async (cardId, newTitle) => {
+    try {
+      await boardService.updateCard(boardId, list.id, cardId, newTitle);
+      onUpdate();
+    } catch (error) {
+      console.error("Error editing card: ", error);
+    }
+  };
+
   const handleDeleteCard = async (cardId) => {
     try {
       await boardService.deleteCard(boardId, list.id, cardId);
@@ -27,14 +36,32 @@ function ListColumn({ list, boardId, onUpdate }) {
       console.error("Error deleting card: ", error);
     }
   };
+
   return (
     <div className="min-w-[280px] w-[280px] bg-gray-100 rounded-xl p-3 shadow-lg flex flex-col max-h-full border-t-4 border-blue-400">
-      <h3 className="font-bold text-slate-700 mb-3 px-1 text-sm uppercase tracking-wide flex justify-between">
-        {list.name}
-        <span className="text-gray-400 text-xs font-normal">
-          {list.cards?.length || 0}
-        </span>
-      </h3>
+      <div className="flex justify-between items-center mb-3 px-1">
+        <h3 className="font-bold text-slate-700 text-sm uppercase tracking-wide">
+          {list.name}{" "}
+          <span className="text-gray-400 text-xs font-normal">
+            ({list.cards?.length || 0})
+          </span>
+        </h3>
+        <button
+          onClick={() => {
+            if (
+              window.confirm(
+                "¿Seguro que quieres borrar esta lista y todas sus tareas?"
+              )
+            ) {
+              onDeleteList(list.id);
+            }
+          }}
+          className="text-gray-400 hover:text-red-600 hover:bg-red-50 rounded p-1 transition"
+          title="Borrar lista"
+        >
+          🗑️
+        </button>
+      </div>
 
       <Droppable droppableId={list.id}>
         {(provided, snapshot) => (
@@ -52,6 +79,7 @@ function ListColumn({ list, boardId, onUpdate }) {
                   card={card}
                   index={index}
                   onDelete={() => handleDeleteCard(card.id)}
+                  onEdit={(newTitle) => handleEditeCard(card.id, newTitle)}
                 />
               ))}
             {provided.placeholder}

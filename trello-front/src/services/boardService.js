@@ -39,5 +39,17 @@ export const boardService = {
             newIndex
         });
         return response.data;
-    }
+    },
+
+    updateCard: async (boardId, listId, cardId, newTitle) => {
+        const response = await api.put(`/boards/${boardId}/lists/${listId}/cards/${cardId}`, {title: newTitle});
+        return response.data;
+    },
+
+    deleteList: async (boardId, listId) => {
+        const response = await api.delete(`/boards/${boardId}/lists/${listId}`);
+        return response.data;
+    },
+
+
 }

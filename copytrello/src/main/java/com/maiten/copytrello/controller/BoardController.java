@@ -93,6 +93,28 @@ public class BoardController {
         return null;
     }
 
+    @PutMapping("/{boardId}/lists/{listId}/cards/{cardId}")
+    public Board updateCard(@PathVariable String boardId, @PathVariable String listId, @PathVariable String cardId, @RequestBody Card cardData) {
+        Board board = boardService.getBoardById(boardId);
+
+        if (board != null) {
+            board.updateCard(listId, cardId, cardData.getTitle());
+            return boardService.save(board);
+        }
+        return null;
+    }
+
+    @DeleteMapping("/{boardId}/lists/{listId}")
+    public Board deleteList(@PathVariable String boardId, @PathVariable String listId) {
+        Board board = boardService.getBoardById(boardId);
+
+        if (board != null) {
+            board.removeList(listId);
+            return boardService.save(board);
+        }
+        return null;
+    }
+
     public static class MoveCardRequest {
         public String sourceListId;
         public String destListId;

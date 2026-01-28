@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,7 +22,6 @@ import com.maiten.copytrello.service.BoardService;
 
 @RestController
 @RequestMapping("/api/boards")
-@CrossOrigin(origins = "*")
 public class BoardController {
 
     @Autowired
@@ -113,6 +111,11 @@ public class BoardController {
             return boardService.save(board);
         }
         return null;
+    }
+
+    @DeleteMapping("/{boardId}")
+    public void deleteBoard(@PathVariable String boardId) {
+        boardService.deleteBoard(boardId);
     }
 
     public static class MoveCardRequest {

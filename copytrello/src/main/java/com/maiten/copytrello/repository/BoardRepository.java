@@ -10,5 +10,5 @@ import com.maiten.copytrello.model.Board;
 @Repository
 public interface BoardRepository extends MongoRepository<Board, String> {
     Optional<Board> findByName(String name);
-
+    boolean existsByName(String name);
 }

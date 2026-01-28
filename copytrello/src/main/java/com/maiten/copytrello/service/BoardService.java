@@ -16,6 +16,12 @@ public class BoardService {
     private BoardRepository boardRepository;
 
     public Board createBoard(BoardRequest request) {
+
+        // Validation
+        if (boardRepository.existsByName(request.getName())) {
+            throw new IllegalArgumentException("Board with name '" + request.getName() + "' already exists.");
+        }
+
         Board board = new Board();
         board.setName(request.getName());
         return boardRepository.save(board);
@@ -36,5 +42,10 @@ public class BoardService {
     public Board save(Board board) {
         return boardRepository.save(board);
     }
+
+    public void deleteBoard(String id) {
+        boardRepository.deleteById(id);
+    }
+
 
 }

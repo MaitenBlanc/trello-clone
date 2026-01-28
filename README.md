@@ -45,7 +45,7 @@ Si tienes Docker instalado, puedes levantar todo el entorno con un solo comando.
 
 1.  Clona el repositorio:
     ```bash
-    git clone [https://github.com/TU_USUARIO/tu-repo.git](https://github.com/TU_USUARIO/tu-repo.git)
+    git clone https://github.com/MaitenBlanc/trello-clone.git
     cd copytrello
     ```
 

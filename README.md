@@ -1,6 +1,5 @@
 # 📋 Clone de Trello (Task Manager Full Stack)
 
-![Project Status](https://img.shields.io/badge/STATUS-EN%20DESARROLLO-orange)
 ![Java](https://img.shields.io/badge/Java-21-ED8B00?style=flat&logo=openjdk&logoColor=white)
 ![Spring Boot](https://img.shields.io/badge/Spring_Boot-3-6DB33F?style=flat&logo=spring&logoColor=white)
 ![React](https://img.shields.io/badge/React-18-61DAFB?style=flat&logo=react&logoColor=black)
